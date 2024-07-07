@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "io-podmanager-api"
+version = "0.1.0"
+description = ""
+authors = ["Alec Joy <alec@alecjoy.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+sqlalchemy = "^2.0.31"
+psycopg = {extras = ["binary", "pool"], version = "^3.2.1"}
+alembic = {extras = ["tz"], version = "^1.13.2"}
+pydantic-settings = "^2.3.4"
+sentry-sdk = {extras = ["celery", "fastapi"], version = "^2.7.1"}
+
+[tool.poetry.group.api.dependencies]
+fastapi = "^0.111.0"
+
+[tool.poetry.group.queue.dependencies]
+celery = {extras = ["redis"], version = "^5.4.0"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
