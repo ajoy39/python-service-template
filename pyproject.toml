@@ -10,7 +10,6 @@ package-mode = false
 python = "^3.12"
 sqlalchemy = "^2.0.31"
 psycopg = {extras = ["binary", "pool"], version = "^3.2.1"}
-alembic = {extras = ["tz"], version = "^1.13.2"}
 pydantic-settings = "^2.3.4"
 
 [tool.poetry.group.api.dependencies]
@@ -25,8 +24,12 @@ sentry-sdk = {extras = ["celery"], version = "^2.7.1"}
 [tool.poetry.group.cli.dependencies]
 typer = "^0.12.3"
 
+[tool.poetry.group.ci.dependencies]
+alembic = {extras = ["tz"], version = "^1.13.2"}
+
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
+alembic = {extras = ["tz"], version = "^1.13.2"}
 
 [build-system]
 requires = ["poetry-core"]
