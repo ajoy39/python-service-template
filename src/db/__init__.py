@@ -7,3 +7,4 @@ async_engine = create_async_engine(str(config.database.url))
 
 class BaseModel(DeclarativeBase):
     pass
+

@@ -9,11 +9,12 @@ def custom_generate_unique_id(route: APIRoute) -> str:
     return f"{route.tags[0]}-{route.name}"
 
 
-if config.sentry.SENTRY_DSN and config.ENVIRONMENT != "local":
-    sentry_sdk.init(dsn=str(config.sentry.SENTRY_DSN), enable_tracing=True)
-
 app = FastAPI(
     title=config.PROJECT_NAME,
     openapi_url=f"{config.api.API_V1_STR}/openapi.json",
-    generate_unique_id_function=custom_generate_unique_id,
 )
+
+
+@app.get("/sentry-debug")
+async def trigger_error():
+    division_by_zero = 1 / 0
