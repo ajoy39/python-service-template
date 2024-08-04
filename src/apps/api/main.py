@@ -1,8 +1,20 @@
-import sentry_sdk
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
-from starlette.middleware.cors import CORSMiddleware
 from src.config import config
+import sentry_sdk
+
+if config.sentry.SENTRY_DSN:
+    sentry_sdk.init(
+            dsn=config.sentry.SENTRY_DSN,
+            # Set traces_sample_rate to 1.0 to capture 100%
+            # of transactions for performance monitoring.
+            traces_sample_rate=1.0,
+            # Set profiles_sample_rate to 1.0 to profile 100%
+            # of sampled transactions.
+            # We recommend adjusting this value in production.
+            profiles_sample_rate=1.0,
+            debug=True,
+    )
 
 
 def custom_generate_unique_id(route: APIRoute) -> str:

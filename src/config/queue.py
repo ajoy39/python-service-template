@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import RedisDsn, computed_field
+from pydantic import RedisDsn, computed_field, HttpUrl
 
 
 class QueueSettings(BaseSettings):
@@ -12,7 +12,7 @@ class QueueSettings(BaseSettings):
 
     @computed_field
     @property
-    def broker_url(self) -> RedisDsn:
+    def BROKER_URL(self) -> RedisDsn:
         return RedisDsn.build(
             scheme="redis",
             host=self.QUEUE_BROKER_HOST,
@@ -21,12 +21,11 @@ class QueueSettings(BaseSettings):
 
     @computed_field
     @property
-    def backend_url(self) -> RedisDsn:
+    def BACKEND_URL(self) -> RedisDsn:
         return RedisDsn.build(
             scheme="redis",
             host=self.QUEUE_BACKEND_HOST,
             port=self.QUEUE_BACKEND_PORT
         )
-
 
 queue_settings = QueueSettings()
