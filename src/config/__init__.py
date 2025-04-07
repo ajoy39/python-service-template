@@ -14,7 +14,7 @@ class Configuration(BaseSettings):
     sentry: SentrySettings = sentry_settings
 
     ENVIRONMENT: str = 'local'
-    PROJECT_NAME: str = "Podmanager"
+    PROJECT_NAME: str = "Python Template"
 
 
 config = Configuration()
