@@ -32,6 +32,7 @@ services:
       args:
         - APP=queue
     command: ["celery", "-A", "src.apps.queue.main:app", "worker"]
+    profiles: [ "queue" ]
     volumes:
       - ./src:/opt/pysetup/src
       - ./tests/apps/queue:/opt/pysetup/tests/apps/queue
@@ -69,6 +70,7 @@ services:
       - 6379
     volumes:
       - queue_broker_data:/data
+    profiles: [ "queue" ]
     restart: unless-stopped
 
   queue_backend:
@@ -78,6 +80,7 @@ services:
       - queue_backend_data:/data
     expose:
       - 6379
+    profiles: [ "queue" ]
     restart: unless-stopped
 
   traefik:
